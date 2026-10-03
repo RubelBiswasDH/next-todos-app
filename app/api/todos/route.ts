@@ -10,13 +10,13 @@ export async function GET() {
    return NextResponse.json({todos})
 }
 
-export async function DELETE(request) {
+export async function DELETE(request: Request) {
     const data = await request.json()
     todos = todos.filter((t) => t?.id !== data?.id)
    return NextResponse.json({todos})
 }
 
-export async function POST(request) {
+export async function POST(request: Request) {
     const data = await request.json()
     todos.push({
         id: todos?.length+1,

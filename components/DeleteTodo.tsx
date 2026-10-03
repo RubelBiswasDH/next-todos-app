@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation'
 
-function DeleteTodo({id}) {
+function DeleteTodo({ id }: { id: string }) {
     const router = useRouter()
 
     async function handleDelete() {
