@@ -1,12 +1,24 @@
-'use client'
 
-import { useParams } from 'next/navigation'
+
 import React from 'react'
 
-function Todo() {
-    const params = useParams()
+export function generateStaticParams() {
+  return [
+    { id: 'one' },
+    { id: 'two' },
+  ];
+}
+
+async function Todo({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+
+     const { id } = await params; 
+  
   return (
-    <div>Todo Id: {params?.id ?? "" }</div>
+    <div>Todo Id: {id ?? "" }</div>
   )
 }
 
