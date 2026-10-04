@@ -1,4 +1,5 @@
 import DeleteTodo from "@/components/DeleteTodo";
+import { baseUrl } from "@/config";
 import Link from "next/link";
 interface Todo {
   id: string;
@@ -6,7 +7,7 @@ interface Todo {
 }
 
 async function TodosPage() {
-  const response = await fetch("http://localhost:3000/api/todos", {
+  const response = await fetch(`${baseUrl}/api/todos`, {
     cache: "no-store",
   });
   const data = await response.json();
@@ -50,12 +51,14 @@ async function TodosPage() {
                 {t?.name}
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
-                <button
-                  type="button"
-                  className="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 focus:outline-none focus:text-blue-800 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400 dark:focus:text-blue-400 mr-3"
-                >
-                  View
-                </button>
+                <Link href={`/todos/${t?.id}`}>
+                  <button
+                    type="button"
+                    className="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 focus:outline-none focus:text-blue-800 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400 dark:focus:text-blue-400 mr-3 cursor-pointer"
+                  >
+                    View
+                  </button>
+                </Link>
                 <DeleteTodo id={t?.id ?? ""} />
               </td>
             </tr>
