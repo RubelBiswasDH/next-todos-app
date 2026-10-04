@@ -1,5 +1,5 @@
 import DeleteTodo from "@/components/DeleteTodo";
-import { baseUrl } from "@/config";
+import { getBaseUrl } from "@/config";
 import Link from "next/link";
 interface Todo {
   id: string;
@@ -7,7 +7,7 @@ interface Todo {
 }
 
 async function TodosPage() {
-  const response = await fetch(`${baseUrl}/api/todos`, {
+  const response = await fetch(`${getBaseUrl()}/api/todos`, {
     cache: "no-store",
   });
   const data = await response.json();

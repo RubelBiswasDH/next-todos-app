@@ -1,13 +1,13 @@
 "use client";
 
-import { baseUrl } from "@/config";
+import { getBaseUrl } from "@/config";
 import { useRouter } from "next/navigation";
 
 function DeleteTodo({ id }: { id: string }) {
   const router = useRouter();
 
   async function handleDelete() {
-    const response = await fetch(`${baseUrl}/api/todos`, {
+    const response = await fetch(`${getBaseUrl()}/api/todos`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
